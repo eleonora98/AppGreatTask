@@ -22,7 +22,6 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
 
-    int[] arr;
     Context context;
     List<ImageItem> list;
     List<ImageItem> filteredItemList;
@@ -53,10 +52,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
-    }
-
-    public ImageItem getItem(int position){
-        return filteredItemList.get(position);
     }
 
     @Override
