@@ -42,14 +42,6 @@ public class ImagesFragment extends Fragment{
     private List<ImageItem> imageItemList;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -68,7 +60,7 @@ public class ImagesFragment extends Fragment{
 
         requestQueue = MyVolley.getInstance(getContext()).getRequestQueue();
         imageItemList = new ArrayList<>();
-        fetchData();
+        fetchImages();
 
     }
 
@@ -108,7 +100,7 @@ public class ImagesFragment extends Fragment{
         return super.onOptionsItemSelected(item);
     }
 
-    public void fetchData(){
+    public void fetchImages(){
         String url = "https://pixabay.com/api/?key=22777933-c5fd447034f12cb57d05dc489";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

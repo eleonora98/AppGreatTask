@@ -4,4 +4,5 @@
     <string name="images_fragment">Images</string>
     <string name="numbers_fragment">Numbers</string>
     <string name="enter_number">Enter a number:</string>
+    <string name="found_number">"To find number %d, %d iterations were used!"</string>
 </resources>

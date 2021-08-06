@@ -7,60 +7,57 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.appgreattask.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NumbersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class NumbersFragment extends Fragment {
+public class NumbersFragment extends Fragment  {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private EditText enteredNumber;
+    private Button btnSearch;
+    private TextView tvMessage;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public NumbersFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NumbersFragment newInstance(String param1, String param2) {
-        NumbersFragment fragment = new NumbersFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    int [] arr = {1,2,4,6,8,12,13,16,20,22,28,34,38,45,56,58,60,61,62,70,
+            71,72,74,75,80,85,87,90,99,100};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_numbers, container, false);
+        View view = inflater.inflate(R.layout.fragment_numbers, container, false);
+        initViews(view);
+
+        return view;
+    }
+
+    private void initViews(View view){
+        enteredNumber = view.findViewById(R.id.number);
+        btnSearch = view.findViewById(R.id.btnSearch);
+        tvMessage = view.findViewById(R.id.tvNumberMessage);
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchNumber(arr);
+            }
+        });
+    }
+
+    private void searchNumber(int [] arr) {
+        int iterations;
+        int number = Integer.parseInt(enteredNumber.getText().toString());
+
+        for (int i=0; i<arr.length; i++) {
+            if ( arr[i] == number){
+                iterations = i+1;
+                String string = String.format(getString(R.string.found_number), number, iterations);
+                tvMessage.setText(string);
+                break;
+            }
+            else {
+                tvMessage.setText("Not found");
+            }
+        }
     }
 }
